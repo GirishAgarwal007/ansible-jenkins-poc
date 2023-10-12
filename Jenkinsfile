@@ -18,6 +18,12 @@ pipeline {
                                 git branch: 'main', url: 'https://github.com/GirishAgarwal007/ansible-jenkins-poc.git'
                         }
                 }
+		stage ( "Pull ansible configuration files and inventory file" ) {
+                        steps {
+                                sh 'sudo chmod 400 ansi-jen'
+                   	 }
+                }
+
 	}
 }
 
