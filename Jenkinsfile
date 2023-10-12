@@ -10,7 +10,7 @@ pipeline {
 				sudo apt install ansible -y
 				sudo apt-get -y install python3-boto3
 				sudo apt-get -y install python3-botocore
-				sudo apt install python3-pip
+				sudo apt install python3-pip -y
     				sudo pip3 install boto'''
 			}
 		}
