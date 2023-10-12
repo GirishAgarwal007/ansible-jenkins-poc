@@ -23,7 +23,11 @@ pipeline {
                                 sh 'sudo chmod 400 ansi-jen'
                    	 }
                 }
-
+		stage ( " Run the playbook ") {
+			steps {
+				sh 'ansible-playbook playbookpoc.yml'
+			}
+		}
 	}
 }
 
