@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+  - name: AWS OS provisioning
+    ec2:
+      instance_type: t2.micro
+      image: ami-053b0d53c279acc90
+      key_name: ansi-jen
+      region: us-east-1
+      group_id: sg-08ad4feef15223a74
+      count: 2
+      vpc_subnet_id: subnet-09403ceca5cf5373d
+      assign_public_ip: yes
+      aws_access_key: AKIA2UDOH3MELK43CI4J
+      aws_secret_key: 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
