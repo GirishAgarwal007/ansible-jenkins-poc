@@ -1,6 +1,6 @@
 - hosts: localhost
   tasks:
-  - name: AWS OS provisioning
+  - name: Launching instances
     ec2:
       instance_type: t2.micro
       image: ami-053b0d53c279acc90
