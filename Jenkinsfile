@@ -24,7 +24,14 @@ pipeline {
 					sh "ls"
 				}
 			}
+		stage ("Run the Playbook that configure 2 EC2 Instances") {
+			agent {
+				label "ansible-control"
+			}
+			steps {
+				sh "sudo ansible-playbook playbookpoc.yml"
+			}
 		}
 	}
-
+}
 
