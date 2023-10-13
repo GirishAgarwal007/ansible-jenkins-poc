@@ -6,13 +6,12 @@ pipeline {
        			         label "ansible-control"
         		}
 			steps {
-				sshagent(['ansible-cred']) {
-					sh " ssh -o StrictHostKeyChecking=no ubuntu@172.31.30.223 sudo apt update "
-					sh " ssh -o StrictHostKeyChecking=no ubuntu@172.31.30.223 sudo apt install ansible -y "
-					sh " ssh -o StrictHostKeyChecking=no ubuntu@172.31.30.223 sudo apt install python3-pip -y "
-    					sh " ssh -o StrictHostKeyChecking=no ubuntu@172.31.30.223 sudo pip3 install boto "
-					sh " ssh -o StrictHostKeyChecking=no ubuntu@172.31.30.223 sudo pip3 install botocore "
-					sh " ssh -o StrictHostKeyChecking=no ubuntu@172.31.30.223 pwd "
+					sh " sudo apt update "
+					sh " sudo apt install ansible -y "
+					sh " sudo apt install python3-pip -y "
+    					sh " sudo pip3 install boto "
+					sh " sudo pip3 install botocore "
+					sh " pwd "
 				}
 			}
 		}
