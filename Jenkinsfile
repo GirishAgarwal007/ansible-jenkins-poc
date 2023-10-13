@@ -17,7 +17,7 @@ pipeline {
                         steps {
                                 sshagent(['ansible-cred']) {
                                         sh ''' scp /root/ansi-jen ubuntu@172.31.30.223:/home/ubuntu
-					       cd /home/ubuntu/
+					       cd /home/ubuntu/ '''
 				}
 			}
 		}
