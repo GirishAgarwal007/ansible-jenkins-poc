@@ -14,21 +14,6 @@ pipeline {
 			}
 		}
 
-                stage ( "Pull ansible configuration files and inventory file" ) {
-                        steps {
-                                git branch: 'main', url: 'https://github.com/GirishAgarwal007/ansible-jenkins-poc.git'
-                        }
-                }
-		stage ( "Change permission of key file" ) {
-                        steps {
-                                sh 'sudo chmod 400 ansi-jen'
-                   	 }
-                }
-		stage ( " Run the playbook ") {
-			steps {
-				sh 'ansible-playbook playbookpoc.yml'
-			}
-		}
 	}
 }
 
