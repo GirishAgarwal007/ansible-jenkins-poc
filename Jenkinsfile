@@ -16,7 +16,7 @@ pipeline {
 		stage ("Copy ansible playbook, ansible configuration files, and ssh key file") {
                         steps {
                                 sshagent(['ansible-cred']) {
-                                        sh ' scp -o StrictHostKeyChecking=no /root/ansi-jen ubuntu@172.31.30.223:/home/ubuntu '
+                                        sh ' scp -o StrictHostKeyChecking=no /home/ubuntu/ansi-jen ubuntu@172.31.30.223:/home/ubuntu '
 					sh ' cd  -o StrictHostKeyChecking=no /home/ubuntu/ '
 				}
 			}
