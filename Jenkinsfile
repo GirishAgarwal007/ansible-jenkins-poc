@@ -1,4 +1,5 @@
 pipeline {
+	agent any
           stages {
 		stage ( " Install ansible, python, boto3 on the ansible control node ") {
 			steps {
