@@ -1,15 +1,17 @@
 pipeline {
-	agent any
+	agent {
+		label "ansible-control"
+	}
           stages {
 		stage ( " Install ansible, python, boto3 on the ansible control node ") {
 			steps {
 				sshagent(['ansible-cred']) {
-					sh '''sudo apt update 
-					sudo apt install ansible -y
-					sudo apt install python3-pip -y
-    					sudo pip3 install boto
-					sudo pip3 install botocore
-					pwd'''
+					sh " ssh -o StrictHostKeyChecking=no ubuntu@172.31.30.223 sudo apt update "
+					sh " ssh -o StrictHostKeyChecking=no ubuntu@35.154.193.74 sudo apt install ansible -y "
+					sh " ssh -o StrictHostKeyChecking=no ubuntu@35.154.193.74 sudo apt install python3-pip -y "
+    					sh " ssh -o StrictHostKeyChecking=no ubuntu@35.154.193.74 sudo pip3 install boto "
+					sh " ssh -o StrictHostKeyChecking=no ubuntu@35.154.193.74 sudo pip3 install botocore "
+					sh " ssh -o StrictHostKeyChecking=no ubuntu@35.154.193.74 pwd "
 				}
 			}
 		}
