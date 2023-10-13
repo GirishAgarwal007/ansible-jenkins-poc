@@ -14,7 +14,6 @@ pipeline {
 					sh " pwd "
 				}
 			}
-		}
 		stage ("Copy ansible playbook, ansible configuration files, and ssh key file") {
                         agent any
 				steps {
@@ -26,5 +25,5 @@ pipeline {
 			}
 		}
 	}
-}
+
 
