@@ -25,7 +25,8 @@ pipeline {
 				}
 			}
 		stage ("Run the Playbook that configure 2 EC2 Instances") {
-			steps {
+			agent any
+				steps {
 				sshagent(['ansible-cred']) {
  								sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.30.223 sudo ansible-playbook /home/ubuntu/jenkins/workspace/jen-ansi-poc/playbookpoc.yml"		
 				}
