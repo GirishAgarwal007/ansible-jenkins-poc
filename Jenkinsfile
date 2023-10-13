@@ -21,6 +21,7 @@ pipeline {
 					sh " sudo scp -i ansi-jen /home/ubuntu/ansible.cfg ubuntu@172.31.30.223:/home/ubuntu/jenkins/workspace/jen-ansi-poc  "
 					sh " sudo scp -i ansi-jen /home/ubuntu/playbookpoc.yml ubuntu@172.31.30.223:/home/ubuntu/jenkins/workspace/jen-ansi-poc  "
 					sh " sudo scp -i ansi-jen /home/ubuntu/hosts ubuntu@172.31.30.223:/home/ubuntu/jenkins/workspace/jen-ansi-poc  "
+					sh "ls"
 				}
 			}
 		}
