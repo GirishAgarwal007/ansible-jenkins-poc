@@ -12,14 +12,15 @@ pipeline {
     					sh " sudo pip3 install boto "
 					sh " sudo pip3 install botocore "
 					sh " pwd "
+					sh "rm -rf ansi-jen ansible.cfg hosts playbookpoc.yml"
 				}
 			}
 		stage ("Copy ansible playbook, ansible configuration files, and ssh key file") {
                         agent any
 				steps {
-                                        sh " sudo scp -i ansi-jen /home/ubuntu/ansi-jen ubuntu@172.31.30.223:/home/ubuntu/jenkins/workspace/jen-ansi-poc "
-					sh " sudo scp -i ansi-jen /home/ubuntu/ansible.cfg ubuntu@172.31.30.223:/home/ubuntu/jenkins/workspace/jen-ansi-poc  "
-					sh " sudo scp -i ansi-jen /home/ubuntu/playbookpoc.yml ubuntu@172.31.30.223:/home/ubuntu/jenkins/workspace/jen-ansi-poc  "
+                                        sh " sudo scp -i ansi-jen /home/ubuntu/ansi-jen ubuntu@172.31.30.223:/home/ubuntu/jenkins/workspace/jen-ansi-poc/ "
+					sh " sudo scp -i ansi-jen /home/ubuntu/ansible.cfg ubuntu@172.31.30.223:/home/ubuntu/jenkins/workspace/jen-ansi-poc/  "
+					sh " sudo scp -i ansi-jen /home/ubuntu/playbookpoc.yml ubuntu@172.31.30.223:/home/ubuntu/jenkins/workspace/jen-ansi-poc/  "
 					sh " sudo scp -i ansi-jen /home/ubuntu/hosts ubuntu@172.31.30.223:/home/ubuntu/jenkins/workspace/jen-ansi-poc  "
 					sh "ls"
 				}
