@@ -19,9 +19,10 @@ pipeline {
 		stage ("Copy ansible playbook, ansible configuration files, and ssh key file") {
                         agent any
 				steps {
-                                	sshagent(['ansible-cred']) {
-                                        	sh " sudo scp -o StrictHostKeyChecking=no /home/ubuntu/ansi-jen ubuntu@172.31.30.223:/home/ubuntu "
-						sh " sudo cd  -o StrictHostKeyChecking=no /home/ubuntu/ "
+                                        sh " sudo scp -i ansi-jen /home/ubuntu/ansi-jen ubuntu@172.31.30.223:/home/ubuntu "
+					sh " sudo scp -i ansi-jen /home/ubuntu/ansible.cfg ubuntu@172.31.30.223:/home/ubuntu "
+					sh " sudo scp -i ansi-jen /home/ubuntu/playbookpoc.yml ubuntu@172.31.30.223:/home/ubuntu "
+					sh " sudo scp -i ansi-jen /home/ubuntu/hosts ubuntu@172.31.30.223:/home/ubuntu "
 				}
 			}
 		}
