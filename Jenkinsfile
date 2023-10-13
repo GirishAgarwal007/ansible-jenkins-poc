@@ -1,9 +1,10 @@
 pipeline {
-	agent {
-		label "ansible-control"
-	}
+	agent none
           stages {
 		stage ( " Install ansible, python, boto3 on the ansible control node ") {
+			agent {
+       			         label "ansible-control"
+        		}
 			steps {
 				sshagent(['ansible-cred']) {
 					sh " ssh -o StrictHostKeyChecking=no ubuntu@172.31.30.223 sudo apt update "
@@ -17,6 +18,7 @@ pipeline {
 		}
 		stage ("Copy ansible playbook, ansible configuration files, and ssh key file") {
                         steps {
+				agent any
                                 sshagent(['ansible-cred']) {
                                         sh " sudo scp -o StrictHostKeyChecking=no /home/ubuntu/ansi-jen ubuntu@172.31.30.223:/home/ubuntu "
 					sh " sudo cd  -o StrictHostKeyChecking=no /home/ubuntu/ "
