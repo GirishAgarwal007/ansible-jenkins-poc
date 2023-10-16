@@ -29,7 +29,7 @@ pipeline {
 			agent any
 				steps {
 				sshagent(['ansible-cred']) {
- 								sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.20.186: sudo ansible-playbook /home/ubuntu/jenkins/workspace/ansi-jen-poc/playbookpoc.yml"		
+ 								sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.20.186 sudo ansible-playbook /home/ubuntu/jenkins/workspace/ansi-jen-poc/playbookpoc.yml"		
 				}
 			}
 		}
