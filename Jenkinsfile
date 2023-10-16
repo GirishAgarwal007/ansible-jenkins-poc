@@ -18,10 +18,10 @@ pipeline {
 		stage ("Copy ansible playbook, ansible configuration files, and ssh key file") {
                         agent any
 				steps {
-                                        sh " sudo scp -i ansi-jen /home/ubuntu/ansi-jen ubuntu@172.31.20.186:/home/ubuntu/jenkins/workspace/jen-ansi-poc/ "
-					sh " sudo scp -i ansi-jen /home/ubuntu/ansible.cfg ubuntu@172.31.20.186:/home/ubuntu/jenkins/workspace/jen-ansi-poc/  "
-					sh " sudo scp -i ansi-jen /home/ubuntu/playbookpoc.yml ubuntu@172.31.20.186:/home/ubuntu/jenkins/workspace/jen-ansi-poc/  "
-					sh " sudo scp -i ansi-jen /home/ubuntu/hosts ubuntu@172.31.20.186:/home/ubuntu/jenkins/workspace/jen-ansi-poc  "
+                                        sh " sudo scp -i ansi-jen /home/ubuntu/ansi-jen ubuntu@172.31.20.186:/home/ubuntu/jenkins/workspace/ansi-jen-poc/ "
+					sh " sudo scp -i ansi-jen /home/ubuntu/ansible.cfg ubuntu@172.31.20.186:/home/ubuntu/jenkins/workspace/ansi-jen-poc/  "
+					sh " sudo scp -i ansi-jen /home/ubuntu/playbookpoc.yml ubuntu@172.31.20.186:/home/ubuntu/jenkins/workspace/ansi-jen-poc/  "
+					sh " sudo scp -i ansi-jen /home/ubuntu/hosts ubuntu@172.31.20.186:/home/ubuntu/jenkins/workspace/ansi-jen-poc  "
 					sh "ls"
 				}
 			}
@@ -29,7 +29,7 @@ pipeline {
 			agent any
 				steps {
 				sshagent(['ansible-cred']) {
- 								sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.20.186: sudo ansible-playbook /home/ubuntu/jenkins/workspace/jen-ansi-poc/playbookpoc.yml"		
+ 								sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.20.186: sudo ansible-playbook /home/ubuntu/jenkins/workspace/ansi-jen-poc/playbookpoc.yml"		
 				}
 			}
 		}
