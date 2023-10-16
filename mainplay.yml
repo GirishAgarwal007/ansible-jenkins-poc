@@ -1,0 +1,15 @@
+- hosts: localhost
+  tasks:
+  - name: Launching instances
+    ec2:
+      instance_type: t2.micro
+      image: ami-053b0d53c279acc90
+      key_name: ansi-jen
+      region: us-east-1
+      group_id: sg-08ad4feef15223a74
+      count: 2
+      vpc_subnet_id: subnet-09403ceca5cf5373d
+      assign_public_ip: yes
+      user_date: "sudo apt update -y
+                  sudo apt install apache2 -y
+                  sudo systemctl enable --now apache2"
