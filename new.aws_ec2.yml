@@ -2,6 +2,8 @@ plugin: aws_ec2
 regions:
   - us-east-1
 
-hostnames: 
+filters:
+  tag:Name:
+  - 'ansible_mn'
+hostnames:
   - ip-address
-
