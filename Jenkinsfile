@@ -8,7 +8,6 @@ pipeline {
 							git branch: 'main', url: 'https://github.com/GirishAgarwal007/ansible-jenkins-poc.git'
 						}
 					}
-		stage (
 				}
 			}
 							 
