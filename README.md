@@ -6,9 +6,9 @@ This project demonstrates integration of Ansible and Jenkins.
 ## Project Description
 
 
-1. Create and configure a dedicated server for Jenkins
-2. Create and configure a dedicated server for Ansible Control Node
-3. Write Ansible Playbook, which provision and configure 2 EC2 Instances with webserver ( httpd )
+1. A dedicated server for Jenkins
+2. A dedicated server for Ansible Control Node
+3. Ansible Playbook, which provision and configure 2 EC2 Instances with webserver ( httpd )
 4. Add ansible node to Jenkins as a slave node for running Ansible playbooks
 5. Configure Jenkins to execute the Ansible Playbook from Ansible Control Node
 server as part of the CI/CD pipeline to configure new 2 ec2 instances with WebServer.
