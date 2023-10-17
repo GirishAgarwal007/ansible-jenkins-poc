@@ -21,6 +21,7 @@ server as part of the CI/CD pipeline to configure new 2 ec2 instances with WebSe
 
 - [Launching two instances on AWS](#launching-two-instances-on-aws)
 - [Configure Jenkins on first instance](#configure-jenkins-on-first-instance)
+- [Configure Ansible on another instance](#configure-ansible-on-another-instance)
 
 ## Launching two instances on AWS 
 
@@ -83,5 +84,19 @@ sudo vim /etc/sudoers.d/jenkins
 jenkins ALL=(ALL) NOPASSWD:ALL
 ```
 
+## Configure Ansible on another instance
 
+Ansible is an open source IT automation tool that automates provisioning, configuration management, application deployment, orchestration, and many other manual IT processes.
+
+```bash
+# installing ansible
+sudo apt update -y
+sudo apt install ansible -y
+```
+```bash
+# installing some packages regarding integration to AWS
+sudo apt install python3-pip
+pip3 install boto3
+pip3 install botocore
+```
 
