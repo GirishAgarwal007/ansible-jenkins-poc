@@ -19,7 +19,7 @@ pipeline {
 					sshagent(['ansible-cred']) {
  								sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.24.19 cd /home/ubuntu/jenkins/workspace/ansi-play/ ; ansible-playbook mainplay.yml "
 								sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.24.19 sleep 60 "
-                                                                sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.24.19 cd /home/ubuntu/jenkins/workspace/ansi-play/ ; ansible-playbook -i /home/ubuntu/jenkins/workspace/ansi-play/new.aws_ec2.yml web.yml "
+                                                                sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.24.19 cd /home/ubuntu/jenkins/workspace/ansi-play/ ; ansible-playbook -i new.aws_ec2.yml web.yml "
                                                         }
                         }
                 }
