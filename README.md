@@ -23,6 +23,7 @@ server as part of the CI/CD pipeline to configure new 2 ec2 instances with WebSe
 - [Configure Jenkins on first instance](#configure-jenkins-on-first-instance)
 - [Jenkins Setup](#jenkins-setup)
 - [Configure Ansible on another instance](#configure-ansible-on-another-instance)
+- [Add Ansible node to Jenkins as a slave node](#add-ansible-node-to-jenkins-as-a-slave-node)
 
 ## Launching two instances on AWS 
 
@@ -115,6 +116,15 @@ pip3 install boto3
 pip3 install botocore
 ```
 
-## Add ansible node to Jenkins as a slave node
+## Add Ansible node to Jenkins as a slave node
 
+Slave nodes are the "machines" on which build agents run. Jenkins monitors each attached node for disk space, free temp space, free swap, clock time/sync, and response time. A node is taken offline if any of these values go outside the configured threshold.
 
+Make sure that 'Java' must be installed on Ansible server
+
+* Step 1: Open any web browser and search "http://public-ip-of-your-instance:8080"
+* Step 2: Click on "Manage Jenkins"
+* Step 3: Click on "Nodes" under "System Configuration" section
+* Step 4: Click on "New Node"
+* Step 5: Provide a Node name, select "Permanent Agent", Click on "Create"
+* Step 6: Provide all the configurations and click on "Save" 
