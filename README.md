@@ -10,8 +10,7 @@ This project demonstrates integration of Ansible and Jenkins.
 2. A dedicated server for Ansible Control Node
 3. Ansible Playbook, which provision and configure 2 EC2 Instances with webserver ( httpd )
 4. Add ansible node to Jenkins as a slave node for running Ansible playbooks
-5. Configure Jenkins to execute the Ansible Playbook from Ansible Control Node
-server as part of the CI/CD pipeline to configure new 2 ec2 instances with WebServer.
+5. Configure Jenkins to execute the Ansible Playbook from Ansible Control Node server as part of the CI/CD pipeline to configure new 2 ec2 instances with WebServer.
 6. So the Jenkinsfile configuration will do the following:
   
 - Get ansible playbooks from Github
@@ -119,6 +118,8 @@ pip3 install botocore
 ## Add Ansible node to Jenkins as a slave node
 
 Slave nodes are the "machines" on which build agents run. Jenkins monitors each attached node for disk space, free temp space, free swap, clock time/sync, and response time. A node is taken offline if any of these values go outside the configured threshold.
+
+Follow this video: https://www.youtube.com/watch?v=99DddJiH7lM
 
 Make sure that 'Java' must be installed on Ansible server
 
