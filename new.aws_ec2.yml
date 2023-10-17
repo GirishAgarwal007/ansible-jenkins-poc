@@ -10,5 +10,5 @@ hostnames:
 
 
 keyed_groups:
-  - prefix: worker
+  - prefix: ansible
     key: tags
