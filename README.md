@@ -22,6 +22,7 @@ server as part of the CI/CD pipeline to configure new 2 ec2 instances with WebSe
 - [Launching two instances on AWS](#launching-two-instances-on-aws)
 - [Configure Jenkins on first instance](#configure-jenkins-on-first-instance)
 - [Configure Ansible on another instance](#configure-ansible-on-another-instance)
+- [Jenkins Setup](#jenkins-setup)
 
 ## Launching two instances on AWS 
 
@@ -84,6 +85,20 @@ sudo vim /etc/sudoers.d/jenkins
 jenkins ALL=(ALL) NOPASSWD:ALL
 ```
 
+## Jenkins Setup
+
+- Step 1: Open any web browser and search "http://public-ip-of-your-instance:8080"
+- Step 2: Unlock Jenkins
+	  Enter the password provided by jenkins at "/var/lib/jenkins/secrets/initialAdminPassword"
+- Step 3: Customize Jenkins
+	  Select "Install suggested plugins"
+- Step 4: Create First Admin User
+	  Enter details -----> click on "Save and Continue"
+- Step 5: Instance Configuration
+	  click on "Save and Finish"
+- Step 6: Jenkins is ready!
+	  click on "Start using Jenkins"
+
 ## Configure Ansible on another instance
 
 Ansible is an open source IT automation tool that automates provisioning, configuration management, application deployment, orchestration, and many other manual IT processes.
@@ -99,4 +114,7 @@ sudo apt install python3-pip
 pip3 install boto3
 pip3 install botocore
 ```
+
+## Add ansible node to Jenkins as a slave node
+
 
