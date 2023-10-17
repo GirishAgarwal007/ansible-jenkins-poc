@@ -7,3 +7,8 @@ filters:
   - 'ansible_mn'
 hostnames:
   - ip-address
+
+
+keyed_groups:
+  - prefix: worker
+    key: tags

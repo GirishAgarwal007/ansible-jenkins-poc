@@ -1,3 +1,4 @@
+---
 - hosts: localhost
   gather_facts: false
   tasks:
@@ -13,3 +14,24 @@
       vpc_subnet_id: "subnet-09403ceca5cf5373d"
       network:
         assign_public_ip: true
+
+---
+- hosts: worker_Name_ansible_mn
+  tasks:
+      - name: "Installing Apache "
+        apt:
+           name: apache
+           update_cache: true
+           state: latest
+
+      - name: "Configure Web Page "
+        template:
+           src: "./index.html.j2 "
+           dest: /var/www/html/index.html
+
+      - name: "Start apache Servie"
+        service:
+           name: "apache"
+           state: started
+           enabled: true
+
