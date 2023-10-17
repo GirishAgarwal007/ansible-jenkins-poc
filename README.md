@@ -21,8 +21,8 @@ server as part of the CI/CD pipeline to configure new 2 ec2 instances with WebSe
 
 - [Launching two instances on AWS](#launching-two-instances-on-aws)
 - [Configure Jenkins on first instance](#configure-jenkins-on-first-instance)
-- [Configure Ansible on another instance](#configure-ansible-on-another-instance)
 - [Jenkins Setup](#jenkins-setup)
+- [Configure Ansible on another instance](#configure-ansible-on-another-instance)
 
 ## Launching two instances on AWS 
 
