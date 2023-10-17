@@ -1,4 +1,5 @@
 - hosts: localhost
+  gather_facts: false
   tasks:
   - name: Launching instances
     ec2:
