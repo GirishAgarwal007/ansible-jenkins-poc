@@ -4,7 +4,7 @@ regions:
 
 filters:
   tag:Name:
-  - 'ansible_mn'
+  - 'worker'
 hostnames:
   - ip-address
 
