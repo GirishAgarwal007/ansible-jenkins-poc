@@ -2,6 +2,7 @@
   tasks:
   - name: Launching instances
     ec2:
+      name: "ansible_mn"
       instance_type: t2.micro
       image: ami-053b0d53c279acc90
       key_name: ansi-jen

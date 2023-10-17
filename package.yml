@@ -1,1 +1,13 @@
+- hosts:
+  tasks: 
+      - name: "Install apache"
+        package: 
+            name: "apache2"
+            state: present
+            state: latest
 
+      - name: "Start apache Servie"
+        service:
+            name: "apache"
+            state: started
+            enabled: true  
