@@ -3,18 +3,18 @@
   tasks:
       - name: "Installing Apache "
         apt:
-           name: apache
+           name: apache2
            update_cache: true
            state: latest
 
       - name: "Configure Web Page "
         template:
-           src: "./index.html.j2 "
+           src: index.html.j2
            dest: /var/www/html/index.html
 
       - name: "Start apache Servie"
         service:
-           name: "apache"
+           name: "apache2"
            state: started
            enabled: true
 
