@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: ansible_Name_worker
   tasks:
       - name: "Installing Apache "
         apt:
