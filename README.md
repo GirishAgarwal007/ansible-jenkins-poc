@@ -1,7 +1,7 @@
 
 # Summary
 
-This project demonstrates integration of Ansible and Jenkins.
+This project demonstrates integration of AWS, Ansible and Jenkins.
 
 ## Project Description
 
