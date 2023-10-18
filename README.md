@@ -250,7 +250,7 @@ enable_plugins = aws_ec2
       name: "worker"
       instance_type: "t2.micro"
       image_id: "ami-053b0d53c279acc90"
-      key_name: "key_pair.pem"
+      key_name: "key_pair"
       region: "us-east-1"
       security_group: "default"
       count: 2
