@@ -92,7 +92,7 @@ jenkins ALL=(ALL) NOPASSWD:ALL
 
 ## Jenkins Setup
 
-- Step 1: Open any web browser and search "http://public-ip-of-your-instance:8080"
+- Step 1: Open any web browser and search "http://public-ip-of-your-jenkins-server:8080"
 - Step 2: Unlock Jenkins
 	  Enter the password provided by jenkins at "/var/lib/jenkins/secrets/initialAdminPassword"
 - Step 3: Customize Jenkins
@@ -292,6 +292,6 @@ Make sure you have installed "awscli" and configured aws (aws configure) on Ansi
 
 ## Build the Jenkins job
 
-* Step 1: Go to " http://public_ip_of_your_jenkins_server:8080"
+* Step 1: Go to " http://public-ip-of-your-jenkins-server:8080"
 * Step 2: Click on job that we have created
 * Step 3: Click on "Build Now" 
