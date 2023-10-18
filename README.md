@@ -25,6 +25,7 @@ This project demonstrates integration of Ansible and Jenkins.
 - [Add Ansible node to Jenkins as a slave node](#add-ansible-node-to-jenkins-as-a-slave-node)
 - [Git Repository](#git-repository)
 - [Creating Pipeline on Jenkins](#creating-pipeline-on-jenkins)
+- [Jenkinsfile](#jenkinsfile)
 
 ## Launching two instances on AWS 
 
@@ -160,3 +161,37 @@ We have to create a GitHub Repository, where we will keep following files :
 - Step 9: Click on "Save"
 
 * When we build the job, the Jenkinsfile will be used by jenkins to run pipeline.
+
+
+## Jenkinsfile
+
+A Jenkinsfile is a text file that contains the definition of a Jenkins Pipeline and is checked into source control.
+
+```bash
+pipeline {
+        agent {
+                label 'ansible-control'
+        }
+        stages {
+                stage ("Pull Important files" ) {
+                                                steps {
+                                                        git branch: 'main', url: 'url_of_your_repository_on_github'
+                                                }
+                                        }
+        stage ("Ansible Configurations") {
+                                        steps {
+                                                sh 'sudo chmod 400 sshkey_file'
+                                        }
+
+                                }
+        stage ("Run the Playbooks") {
+                                steps {
+                                        sshagent(['ansible-cred']) {
+                                                                sh "ssh -o StrictHostKeyChecking=no ubuntu@IP_of_ansible_node cd /path/to/your/playbook/ ; ansible-playbook playbook.yml " # main playbook that configure 2 EC2 instances on AWS
+                                                                sh "ssh -o StrictHostKeyChecking=no ubuntu@IP_of_ansible_node sleep 60 "
+                                                                sh "ssh -o StrictHostKeyChecking=no ubuntu@IP_of_ansible_node cd path/to/your/playbook/ ; ansible-playbook -i new.aws_ec2.yml web.yml " # playbook that configure web server on launched instances 
+                                                        }
+                        }
+                }
+        }
+}
