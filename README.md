@@ -28,6 +28,7 @@ This project demonstrates integration of AWS, Ansible and Jenkins.
 - [Jenkinsfile](#jenkinsfile)
 - [Ansible Configuration files](#ansible-configuration-files)
 - [Build the Jenkins job](#build-the-jenkins-job)
+- [Thank You](#thank-you)
 
 ## Launching two instances on AWS 
 
@@ -295,3 +296,23 @@ Make sure you have installed "awscli" and configured aws (aws configure) on Ansi
 * Step 1: Go to " http://public-ip-of-your-jenkins-server:8080"
 * Step 2: Click on job that we have created
 * Step 3: Click on "Build Now" 
+
+
+## Thank You
+
+Following this document, we can integrate AWS, Ansible, and Jenkins.
+
+Feel free to adapt this documentation to your specific requirements.
+
+I hope you will find it useful. 
+
+If you have any doubt in any of the step, feel free to contact me. 
+
+THANK YOU
+
+<table>
+  <tr>
+    <th> <a href="https://www.linkedin.com/in/girish-agarwal-g7" target="_blank"><img src="https://img.icons8.com/color/452/linkedin.png" alt="linkedin" width="30"/><a/>
+</th>
+  </tr>
+</table>
