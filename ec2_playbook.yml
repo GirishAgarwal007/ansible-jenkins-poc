@@ -5,7 +5,7 @@
     ec2_key:
        name: "ansible-key"
        region: "us-east-1"
-       key_material: "{{ lookup('file', '/home/ubuntu/jenkins/workspace/ansi-play/ansible-key') }}"
+       key_material: "{{ lookup('file', '/home/ubuntu/ansible-jenkins-poc/ansible-key') }}"
 
   - name: Launching first instance
     ec2_instance:
