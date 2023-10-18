@@ -296,7 +296,7 @@ Make sure you have installed "awscli" and configured aws (aws configure) on Ansi
 * Step 1: Go to " http://public-ip-of-your-jenkins-server:8080"
 * Step 2: Click on job that we have created
 * Step 3: Click on "Build Now" 
-
+* Step 4: Open any browser and search "public-ip-of-any-instance-that-launched-after-building-the-job"
 
 ## Thank You
 
