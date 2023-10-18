@@ -128,7 +128,7 @@ Follow this video: https://www.youtube.com/watch?v=99DddJiH7lM
 
 Make sure that 'Java' must be installed on Ansible server
 
-* Step 1: Open any web browser and search "http://public-ip-of-your-instance:8080"
+* Step 1: Open any web browser and search "http://public-ip-of-your-jenkins-server:8080"
 * Step 2: Click on "Manage Jenkins"
 * Step 3: Click on "Nodes" under "System Configuration" section
 * Step 4: Click on "New Node"
