@@ -23,6 +23,7 @@ This project demonstrates integration of Ansible and Jenkins.
 - [Jenkins Setup](#jenkins-setup)
 - [Configure Ansible on another instance](#configure-ansible-on-another-instance)
 - [Add Ansible node to Jenkins as a slave node](#add-ansible-node-to-jenkins-as-a-slave-node)
+- [Git Repository](#git-repository)
 
 ## Launching two instances on AWS 
 
@@ -129,3 +130,17 @@ Make sure that 'Java' must be installed on Ansible server
 * Step 4: Click on "New Node"
 * Step 5: Provide a Node name, select "Permanent Agent", Click on "Create"
 * Step 6: Provide all the configurations and click on "Save" 
+
+
+## Git Repository
+
+We have to create a GitHub Repository, where we will keep following files :
+
+* Jenkinsfile :- This file will be used by Ansible job.
+* ansible.cfg :- Ansible configuration file
+* Dynamic inventory file :- A dynamic inventory is a script written in Python, PHP, or any other programming language. It comes in handy in cloud environments such as AWS where IP addresses change once a virtual server is stopped and started again.
+
+* Playbook that configure 2 EC2 instances on AWS
+* Playbook that configure web server (HTTPD) on both launched instances
+* A Jinja2 template file for index.html
+* sshkey file :- For Ansible keybased authentication
