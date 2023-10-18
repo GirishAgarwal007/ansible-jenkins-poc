@@ -1,16 +1,21 @@
 ---
 - hosts: ansible_Name_worker
   tasks:
-      - name: "Installing Apache "
+      - name: "Installing Apache"
         apt:
            name: apache2
            update_cache: true
            state: latest
 
-      - name: "Configure Web Page "
+     - name: "Creating Document Root"
+       file:
+          path: /home/ubuntu/app/
+          state: directory 
+
+      - name: "Configure Web Page"
         template:
            src: index.html.j2
-           dest: /var/www/html/index.html
+           dest: /home/ubuntu/app/index.html
 
       - name: "Start apache Servie"
         service:
