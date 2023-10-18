@@ -1,17 +1,37 @@
----
 - hosts: localhost
   gather_facts: false
   tasks:
-  - name: Launching instances
+  - name: Launching first instance 
     ec2_instance:
-      name: "worker"
       instance_type: "t2.micro"
       image_id: "ami-053b0d53c279acc90"
       key_name: "ansi-jen"
       region: "us-east-1"
       security_group: "default"
-      count: 2
       vpc_subnet_id: "subnet-09403ceca5cf5373d"
       network:
         assign_public_ip: true
+      tags:
+        Name: web1
+        Env: Test
+        Team: Dev
+
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: Launching second instance
+    ec2_instance:
+      instance_type: "t2.micro"
+      image_id: "ami-053b0d53c279acc90"
+      key_name: "ansi-jen"
+      region: "us-east-1"
+      security_group: "default"
+      vpc_subnet_id: "subnet-09403ceca5cf5373d"
+      network:
+        assign_public_ip: true
+      tags:
+        Name: web2
+        Env: Prod
+        Team: DevOps
 
