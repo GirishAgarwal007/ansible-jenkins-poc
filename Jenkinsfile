@@ -4,7 +4,9 @@ pipeline {
 	}
 	stages {
 		stage ("Pull Important files" ) {
-						sh "pwd"
-					}
+						steps {
+							sh "pwd"
+			}
 		}
+	}
 }
