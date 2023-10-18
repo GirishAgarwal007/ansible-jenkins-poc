@@ -159,4 +159,4 @@ We have to create a GitHub Repository, where we will keep following files :
 - Step 8: Enter name of the jenkins file in "Script Path"
 - Step 9: Click on "Save"
 
-* When we build our job, the Jenkinsfile will be used by jenkins to run pipeline.
+* When we build the job, the Jenkinsfile will be used by jenkins to run pipeline.
