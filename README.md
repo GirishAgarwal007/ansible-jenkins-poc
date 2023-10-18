@@ -26,6 +26,7 @@ This project demonstrates integration of Ansible and Jenkins.
 - [Git Repository](#git-repository)
 - [Creating Pipeline on Jenkins](#creating-pipeline-on-jenkins)
 - [Jenkinsfile](#jenkinsfile)
+- [Ansible Configuration files](#ansible-configuration-files)
 
 ## Launching two instances on AWS 
 
@@ -195,3 +196,97 @@ pipeline {
                 }
         }
 }
+```
+
+## Ansible Configuration files
+
+* Sample Dynamic Inventory file
+```bash
+plugin: aws_ec2
+regions:
+  - us-east-1
+
+filters:
+  tag:Name:
+  - 'worker'
+
+keyed_groups:
+  - prefix: ansible
+    key: tags
+
+hostnames:
+  - ip-address
+```
+
+* Ansible main configuration file :- ansible.cfg
+```bash
+[defaults]
+inventory = /path/to/your/dynamic/inventory/file 
+private_key_file = /path/to/your/sshkey/file
+host_key_checking = False
+remote_user = ubuntu 
+ask_pass = false
+
+[privilege_escalation]
+become = true
+become_user = root
+become_method = sudo
+become_ask_pass = false
+
+
+[inventory]
+enable_plugins = aws_ec2
+```
+
+* Playbook that configure 2 EC2 instances on AWS
+```bash
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: Launching instances
+    ec2_instance:
+      name: "worker"
+      instance_type: "t2.micro"
+      image_id: "ami-053b0d53c279acc90"
+      key_name: "key_pair.pem"
+      region: "us-east-1"
+      security_group: "default"
+      count: 2
+      vpc_subnet_id: "subnet_id"
+      network:
+        assign_public_ip: true
+``` 
+Make sure you have installed "awscli" and configured aws (aws configure) on Ansible Control node.
+
+* Playbook that configure webserver on launched instances
+```bash
+---
+- hosts: ansible_Name_worker
+  tasks:
+      - name: "Installing Apache "
+        apt:
+           name: apache2
+           update_cache: true
+           state: latest
+
+      - name: "Configure Web Page "
+        template:
+           src: index.html.j2
+           dest: /var/www/html/index.html
+
+      - name: "Start apache Servie"
+        service:
+           name: "apache2"
+           state: started
+           enabled: true
+```
+
+* Jinja2 template file for index.html (index.html.j2)
+```bash
+<h1> This is an Ansible Managed(Worket) Node </h1>
+<h2> Private IP_ADDRESS is : {{ ansible_default_ipv4.address  }} </h2>
+<h2> Public IP_ADDRESS is : {{ inventory_hostname }} </h2>
+```
+
+
