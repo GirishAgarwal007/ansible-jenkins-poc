@@ -24,6 +24,7 @@ This project demonstrates integration of Ansible and Jenkins.
 - [Configure Ansible on another instance](#configure-ansible-on-another-instance)
 - [Add Ansible node to Jenkins as a slave node](#add-ansible-node-to-jenkins-as-a-slave-node)
 - [Git Repository](#git-repository)
+- [Creating Pipeline on Jenkins](#creating-pipeline-on-jenkins)
 
 ## Launching two instances on AWS 
 
@@ -144,3 +145,18 @@ We have to create a GitHub Repository, where we will keep following files :
 * Playbook that configure web server (HTTPD) on both launched instances
 * A Jinja2 template file for index.html
 * sshkey file :- For Ansible keybased authentication
+
+
+## Creating Pipeline on Jenkins
+
+- Step 1: Click on "New Item"
+- Step 2: Enter an item name and select "Pipeline" projct and click on "OK"
+- Step 3: Provide a Description
+- Step 4: Select "Pipeline script from SCM" in "Definition" under Pipeline section
+- Step 5: Selecti "Git" in SCM section
+- Step 6: Provide Repository url where we have all the files
+- Step 7: Enter Branch
+- Step 8: Enter name of the jenkins file in "Script Path"
+- Step 9: Click on "Save"
+
+* When we build our job, the Jenkinsfile will be used by jenkins to run pipeline.
