@@ -1,11 +1,17 @@
 - hosts: localhost
   gather_facts: false
   tasks:
-  - name: Launching first instance 
+  - name: creating key pair
+    ec2_key:
+       name: "ansible-key"
+       region: "us-east-1"
+       key_material: "{{ lookup('file', '/home/ubuntu/jenkins/workspace/ansi-play/ansible-key') }}"
+
+  - name: Launching first instance
     ec2_instance:
       instance_type: "t2.micro"
       image_id: "ami-053b0d53c279acc90"
-      key_name: "ansi-jen"
+      key_name: "ansible-key"
       region: "us-east-1"
       security_group: "default"
       vpc_subnet_id: "subnet-09403ceca5cf5373d"
@@ -16,15 +22,11 @@
         Env: Test
         Team: Dev
 
-
-- hosts: localhost
-  gather_facts: false
-  tasks:
   - name: Launching second instance
     ec2_instance:
       instance_type: "t2.micro"
       image_id: "ami-053b0d53c279acc90"
-      key_name: "ansi-jen"
+      key_name: "ansible-key"
       region: "us-east-1"
       security_group: "default"
       vpc_subnet_id: "subnet-09403ceca5cf5373d"
