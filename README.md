@@ -27,6 +27,7 @@ This project demonstrates integration of Ansible and Jenkins.
 - [Creating Pipeline on Jenkins](#creating-pipeline-on-jenkins)
 - [Jenkinsfile](#jenkinsfile)
 - [Ansible Configuration files](#ansible-configuration-files)
+- [Build the Jenkins job](#build-the-jenkins-job)
 
 ## Launching two instances on AWS 
 
@@ -289,4 +290,8 @@ Make sure you have installed "awscli" and configured aws (aws configure) on Ansi
 <h2> Public IP_ADDRESS is : {{ inventory_hostname }} </h2>
 ```
 
+## Build the Jenkins job
 
+* Step 1: Go to " http://public_ip_of_your_jenkins_server:8080"
+* Step 2: Click on job that we have created
+* Step 3: Click on "Build Now" 
