@@ -55,7 +55,7 @@ Follow the official document:
 
 ```bash
 # installing Java
-sudo apt update -you
+sudo apt update -y
 sudo apt install default-jre
 ```
 
