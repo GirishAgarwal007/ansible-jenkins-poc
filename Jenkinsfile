@@ -10,7 +10,7 @@ pipeline {
 		}
 		stage ("Run the Ansible Playbooks") {
 						steps {
-							sh "cd /home/ubuntu/ansible-jenkins-poc/ ; ansible-playbook ec2_playbook.yml -e key=$key region=$region insta_type=$insta_type ami=$ami sg_group=$sg_group subnet=$subnet "
+							sh "cd /home/ubuntu/ansible-jenkins-poc/ ; ansible-playbook ec2_playbook.yml -e key=$key -e region=$region -e insta_type=$insta_type -e ami=$ami -e sg_group=$sg_group -e subnet=$subnet "
 							sh " sleep 60"
 							sh "cd /home/ubuntu/ansible-jenkins-poc/ ; ansible-playbook webserver.yml "
 			}
