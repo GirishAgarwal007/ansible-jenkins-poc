@@ -7,7 +7,7 @@
            update_cache: true
            state: latest
 
-     - name: "Creating Document Root"
+      - name: "Creating Document Root"
        file:
           path: /home/ubuntu/app/
           state: directory 
@@ -16,6 +16,21 @@
         template:
            src: index.html.j2
            dest: /home/ubuntu/app/index.html
+    
+      - name: "Changing apache.conf"
+        lineinfile: 
+           path: /etc/apache2/apache2.conf
+           search_string: '<Directory /var/www/>'
+           line: <Directory /home/ubuntu/app>
+
+      - name: "Changing sites-available/000-default.conf"
+        lineinfile:
+           path: /etc/apache2/sites-available/000-default.conf
+           search_string: 'DocumentRoot /var/www/html'
+           line: DocumentRoot /home/ubuntu/app
+
+      - name: "Changing permission for www-data user"
+        command: chown -R ubuntu:www-data /home/ubuntu 
 
       - name: "Start apache Servie"
         service:
