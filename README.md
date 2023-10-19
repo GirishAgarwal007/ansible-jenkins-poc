@@ -178,22 +178,14 @@ pipeline {
         stages {
                 stage ("Pull Important files" ) {
                                                 steps {
-                                                        git branch: 'main', url: 'url_of_your_repository_on_github'
-                                                }
-                                        }
-        stage ("Ansible Configurations") {
-                                        steps {
-                                                sh 'sudo chmod 400 sshkey_file'
-                                        }
-
-                                }
-        stage ("Run the Playbooks") {
-                                steps {
-                                        sshagent(['ansible-cred']) {
-                                                                sh "ssh -o StrictHostKeyChecking=no ubuntu@IP_of_ansible_node cd /path/to/your/playbook/ ; ansible-playbook playbook.yml " # main playbook that configure 2 EC2 instances on AWS
-                                                                sh "ssh -o StrictHostKeyChecking=no ubuntu@IP_of_ansible_node sleep 60 "
-                                                                sh "ssh -o StrictHostKeyChecking=no ubuntu@IP_of_ansible_node cd path/to/your/playbook/ ; ansible-playbook -i new.aws_ec2.yml web.yml " # playbook that configure web server on launched instances 
-                                                        }
+                                                        sh "cd /home/ubuntu/ ; git clone https://github.com/GirishAgarwal007/ansible-jenkins-poc.git "
+                        }
+                }
+                stage ("Run the Ansible Playbooks") {
+                                                steps {
+                                                        sh "cd /home/ubuntu/ansible-jenkins-poc/ ; ansible-playbook ec2_playbook.yml -e key=$key -e region=$region -e insta_type=$insta_type -e ami=$ami -e sg_group=$sg_group -e subnet=$subnet "
+                                                        sh " sleep 60"
+                                                        sh "cd /home/ubuntu/ansible-jenkins-poc/ ; ansible-playbook web_server.yml "
                         }
                 }
         }
@@ -201,6 +193,9 @@ pipeline {
 ```
 
 ## Ansible Configuration files
+
+
+* Create an IAM Role on AWS with the permission of "EC2_FULL_ACCESS" and attach it with Ansible Control node
 
 * Sample Dynamic Inventory file
 ```bash
@@ -266,22 +261,51 @@ Make sure you have installed "awscli" and configured aws (aws configure) on Ansi
 ---
 - hosts: ansible_Name_worker
   tasks:
-      - name: "Installing Apache "
+      - name: "Installing Apache"
         apt:
            name: apache2
            update_cache: true
            state: latest
 
-      - name: "Configure Web Page "
+      - name: "Start apache Service"
+        service:
+            name: "apache2"
+            state: started
+            enabled: true
+
+      - name: "Creating Document Root"
+        file:
+          path: /home/ubuntu/app/
+          state: directory
+
+      - name: "Configure Web Page"
         template:
            src: index.html.j2
-           dest: /var/www/html/index.html
+           dest: /home/ubuntu/app/index.html
 
-      - name: "Start apache Servie"
-        service:
-           name: "apache2"
-           state: started
-           enabled: true
+      - name: "Changing apache.conf"
+        lineinfile:
+           path: /etc/apache2/apache2.conf
+           search_string: '<Directory /var/www/>'
+           line: <Directory /home/ubuntu/app>
+
+      - name: "Changing sites-available/000-default.conf"
+        lineinfile:
+           path: /etc/apache2/sites-available/000-default.conf
+           search_string: 'DocumentRoot /var/www/html'
+           line: DocumentRoot /home/ubuntu/app
+        notify:
+            - Restart apache service
+
+      - name: "Changing permission for www-data user"
+        command: chown -R ubuntu:www-data /home/ubuntu
+
+  handlers:
+        - name: "Restart apache service"
+          service:
+            name: "apache2"
+            state: restarted
+
 ```
 
 * Jinja2 template file for index.html (index.html.j2)
