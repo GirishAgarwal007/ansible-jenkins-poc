@@ -121,6 +121,11 @@ pip3 install boto3
 pip3 install botocore
 ```
 
+* Install amazon.aws collection using the ansible-galaxy command:
+```bash
+ansible-galaxy collection install amazon.aws
+```
+
 ## Add Ansible node to Jenkins as a slave node
 
 Slave nodes are the "machines" on which build agents run. Jenkins monitors each attached node for disk space, free temp space, free swap, clock time/sync, and response time. A node is taken offline if any of these values go outside the configured threshold.
