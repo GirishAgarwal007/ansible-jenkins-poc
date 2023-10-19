@@ -27,6 +27,7 @@ This project demonstrates integration of AWS, Ansible and Jenkins.
 - [Creating Pipeline on Jenkins](#creating-pipeline-on-jenkins)
 - [Jenkinsfile](#jenkinsfile)
 - [Ansible Configuration files](#ansible-configuration-files)
+- [Set Environment Variable in Jenkins](#set-environment-variable-in-jenkins)
 - [Build the Jenkins job](#build-the-jenkins-job)
 - [Thank You](#thank-you)
 
@@ -243,24 +244,47 @@ become_ask_pass = false
 enable_plugins = aws_ec2
 ```
 
-* Playbook that configure 2 EC2 instances on AWS
+* Playbook that configure 2 EC2 instances on AWS, all the variable used in the playbook will get values from Jenkins Environment Variables.
 ```bash
----
 - hosts: localhost
   gather_facts: false
   tasks:
-  - name: Launching instances
+  - name: creating key pair
+    ec2_key:
+       name: "{{ key }}"
+       region: "{{ region }}"
+       key_material: "{{ lookup('file', '/home/ubuntu/ansible-jenkins-poc/ansible-key') }}"
+
+  - name: Launching first instance
     ec2_instance:
-      name: "worker"
-      instance_type: "t2.micro"
-      image_id: "ami-053b0d53c279acc90"
-      key_name: "key_pair"
-      region: "us-east-1"
-      security_group: "default"
-      count: 2
-      vpc_subnet_id: "subnet_id"
+      instance_type: "{{ insta_type }}"
+      image_id: "{{ ami }}"
+      key_name: "{{ key }}"
+      region: "{{ region }}"
+      security_group: "{{ sg_group }}"
+      vpc_subnet_id: "{{ subnet }}"
       network:
         assign_public_ip: true
+      tags:
+        Name: web1
+        Env: Test
+        Team: Dev
+
+  - name: Launching second instance
+    ec2_instance:
+      instance_type: "{{ insta_type }}"
+      image_id: "{{ ami }}"
+      key_name: "{{ key }}"
+      region: "{{ region }}"
+      security_group: "{{ sg_group }}"
+      vpc_subnet_id: "{{ subnet }}"
+      network:
+        assign_public_ip: true
+      tags:
+        Name: web2
+        Env: Prod
+        Team: DevOps
+
 ``` 
 Make sure you have installed "awscli" and configured aws (aws configure) on Ansible Control node.
 
@@ -322,6 +346,16 @@ Make sure you have installed "awscli" and configured aws (aws configure) on Ansi
 <h2> Private IP_ADDRESS is : {{ ansible_default_ipv4.address  }} </h2>
 <h2> Public IP_ADDRESS is : {{ inventory_hostname }} </h2>
 ```
+
+## Set Environment Variable in Jenkins
+
+* Step 1: Go to " http://public-ip-of-your-jenkins-server:8080"
+* Step 2: Click on "Manage Jenkins"
+* Step 3: Click on "system" under "System Configuration" section
+* Step 4: under the "Global properties" check the "Environment variables" option
+* Step 5: Add variables with "Name" and "Value".
+* Step 6: Click on "Save"
+
 
 ## Build the Jenkins job
 
