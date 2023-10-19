@@ -205,12 +205,15 @@ pipeline {
 * Sample Dynamic Inventory file
 ```bash
 plugin: aws_ec2
+aws_profile: devops
 regions:
   - us-east-1
 
 filters:
-  tag:Name:
-  - 'worker'
+  tag:Env:
+    - Test
+    - Prod
+  instance-state-name : running
 
 keyed_groups:
   - prefix: ansible
@@ -264,7 +267,7 @@ Make sure you have installed "awscli" and configured aws (aws configure) on Ansi
 * Playbook that configure webserver on launched instances
 ```bash
 ---
-- hosts: ansible_Name_worker
+- hosts: ansible_Env_Test, ansible_Env_Prod
   tasks:
       - name: "Installing Apache"
         apt:
