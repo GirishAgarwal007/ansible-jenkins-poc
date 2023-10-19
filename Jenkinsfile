@@ -13,5 +13,7 @@ pipeline {
 							sh "cd /home/ubuntu/ansible-jenkins-poc/ ; ansible-playbook ec2_playbook.yml -e key=$key region=$region insta_type=$insta_type ami=$ami sg_group=$sg_group subnet=$subnet "
 							sh " sleep 60"
 							sh "cd /home/ubuntu/ansible-jenkins-poc/ ; ansible-playbook webserver.yml "
+			}
+		}
 	}
 }
