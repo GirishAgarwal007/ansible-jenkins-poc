@@ -1,5 +1,5 @@
 plugin: aws_ec2
-profile: devops
+aws_profile: devops
 regions:
   - us-east-1
 
@@ -7,7 +7,7 @@ filters:
   tag:Env:
     - Test
     - Prod
-  Prodnstance-state-name : running
+  instance-state-name : running
 
 keyed_groups:
   - prefix: ansible
@@ -15,3 +15,4 @@ keyed_groups:
 
 hostnames:
   - ip-address
+

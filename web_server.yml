@@ -1,5 +1,5 @@
 ---
-- hosts: ansible_Name_worker
+- hosts: ansible_Env_Prod, ansible_Env_Test
   tasks:
       - name: "Installing Apache"
         apt:
@@ -7,18 +7,24 @@
            update_cache: true
            state: latest
 
+      - name: "Start apache Service"
+        service:
+            name: "apache2"
+            state: started
+            enabled: true
+
       - name: "Creating Document Root"
-       file:
+        file:
           path: /home/ubuntu/app/
-          state: directory 
+          state: directory
 
       - name: "Configure Web Page"
         template:
            src: index.html.j2
            dest: /home/ubuntu/app/index.html
-    
+
       - name: "Changing apache.conf"
-        lineinfile: 
+        lineinfile:
            path: /etc/apache2/apache2.conf
            search_string: '<Directory /var/www/>'
            line: <Directory /home/ubuntu/app>
@@ -28,14 +34,15 @@
            path: /etc/apache2/sites-available/000-default.conf
            search_string: 'DocumentRoot /var/www/html'
            line: DocumentRoot /home/ubuntu/app
+        notify:
+            - Restart apache service
 
       - name: "Changing permission for www-data user"
-        command: chown -R ubuntu:www-data /home/ubuntu 
+        command: chown -R ubuntu:www-data /home/ubuntu
 
-      - name: "Start apache Servie"
-        service:
-           name: "apache2"
-           state: started
-           enabled: true
-
+  handlers:
+        - name: "Restart apache service"
+          service:
+            name: "apache2"
+            state: restarted
 
