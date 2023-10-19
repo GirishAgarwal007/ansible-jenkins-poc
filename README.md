@@ -116,6 +116,10 @@ sudo apt update -y
 sudo apt install ansible -y
 ```
 ```bash
+# Verify installation
+ansible --version
+```
+```bash
 # installing some packages regarding integration to AWS
 sudo apt install python3-pip
 pip3 install boto3
